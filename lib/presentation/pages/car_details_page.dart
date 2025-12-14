@@ -4,8 +4,9 @@ import 'package:rent_cars_app/presentation/widgets/car_card.dart';
 import 'package:rent_cars_app/presentation/widgets/more_card.dart';
 
 class CarDetailsPage extends StatelessWidget {
-  final Car car;
-  const CarDetailsPage({super.key, required this.car});
+  final List<Car> cars;
+  final int index;
+  const CarDetailsPage({super.key, required this.cars, required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -25,14 +26,7 @@ class CarDetailsPage extends StatelessWidget {
       body: ListView(
         padding: EdgeInsets.fromLTRB(0, 0, 0, 40),
         children: [
-          CarCard(
-            car: Car(
-              model: car.model,
-              distance: car.distance,
-              fuelCapacity: car.fuelCapacity,
-              pricePerHour: car.pricePerHour,
-            ),
-          ),
+          CarCard(cars: cars, index: index),
           SizedBox(height: 20),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20),
@@ -81,33 +75,14 @@ class CarDetailsPage extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(height: 20),
-          MoreCard(
-            car: Car(
-              model: car.model,
-              distance: car.distance,
-              fuelCapacity: car.fuelCapacity,
-              pricePerHour: car.pricePerHour,
-            ),
-          ),
-          SizedBox(height: 20),
-          MoreCard(
-            car: Car(
-              model: car.model,
-              distance: car.distance,
-              fuelCapacity: car.fuelCapacity,
-              pricePerHour: car.pricePerHour,
-            ),
-          ),
-          SizedBox(height: 20),
-          MoreCard(
-            car: Car(
-              model: car.model,
-              distance: car.distance,
-              fuelCapacity: car.fuelCapacity,
-              pricePerHour: car.pricePerHour,
-            ),
-          ),
+          ...List.generate(cars.length, (index) {
+            return Column(
+              children: [
+                MoreCard(cars: cars, index: index),
+                SizedBox(height: 20),
+              ],
+            );
+          }),
         ],
       ),
     );

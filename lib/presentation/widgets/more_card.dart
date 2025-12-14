@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:rent_cars_app/data/models/Car.dart';
 
 class MoreCard extends StatelessWidget {
-  final Car car;
-  const MoreCard({super.key, required this.car});
+  final List<Car> cars;
+  final int index;
+  const MoreCard({super.key, required this.cars, required this.index});
 
   @override
   Widget build(BuildContext context) {
+    final car = cars[index];
     return Container(
       padding: EdgeInsets.all(20),
       margin: EdgeInsets.symmetric(horizontal: 20),

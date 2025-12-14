@@ -3,16 +3,18 @@ import 'package:rent_cars_app/data/models/Car.dart';
 import 'package:rent_cars_app/presentation/pages/car_details_page.dart';
 
 class CarCard extends StatelessWidget {
-  final Car car;
-  const CarCard({super.key, required this.car});
+  final List<Car> cars;
+  final int index;
+  const CarCard({super.key, required this.cars, required this.index});
 
   @override
   Widget build(BuildContext context) {
+    final car = cars[index];
     return GestureDetector(
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => CarDetailsPage(car: car,)),
+          MaterialPageRoute(builder: (context) => CarDetailsPage(cars: cars, index: index)),
         );
       },
       child: Container(
